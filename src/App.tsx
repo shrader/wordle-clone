@@ -57,7 +57,6 @@ function GameContainer({answer}:{answer:string}) {
     {testChars}
     </div>
     <DisplayAllGuesses guesses={guesses}/>
-    Hello
     </>
   );
 }
