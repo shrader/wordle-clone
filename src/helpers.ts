@@ -2,15 +2,14 @@ import * as type from './types';
 import * as API from './Api';
 
 export const freqCounter = (str:string) => {
-  console.log('start frequency counter');
-  console.log('given string ', str)
+  // console.log('start frequency counter');
+  // console.log('given string ', str)
   const freqs: { [key: string]: number } = {};
   const strArr = str.split('');
-  console.log('str Arr', strArr);
   for (let char of strArr) {
     freqs[char] = (freqs[char] + 1) || 1;
-    console.log('char: ', char);
-    console.log('freqs:', freqs);
+    // console.log('char: ', char);
+    // console.log('freqs:', freqs);
   }
   return freqs;
 }
@@ -32,13 +31,10 @@ const allLettersAreGreen = (guess:type.WordGuess) => {
   console.log('answer arr: ', answerLetters);
   console.log('guess arr: ', guessLetters);
   // const wordGuessLetterFrequencies = freqCounter(wordGuess);
-  console.log('answer inside scoreLetters ', answer);
   const answerLetterFrequencies = freqCounter(answer);
-  console.log('answerFreqs ',answerLetterFrequencies);
   const letterGuessArr:type.WordGuess = [];
 
   for (let idx=0; idx < guessLetters.length; idx++ ) {
-    console.log('idx: ',idx);
     const submittedLetter = guessLetters[idx];
     const correctLetter = answerLetters[idx];
 
@@ -63,19 +59,20 @@ const allLettersAreGreen = (guess:type.WordGuess) => {
     const letterGuessObj:type.LetterGuess = {letter:submittedLetter, color:'gray'};
     letterGuessArr.push(letterGuessObj);
   }
-  console.log('letter guess array:',letterGuessArr);
+  // console.log('letter guess array:',letterGuessArr);
   return letterGuessArr
 }
 
 export const handleWordSubmit = async (wordGuess:string, answer:string, setGuessFunc:type.SetGuessesFunction) => {
-  console.log('answer from inside handleWordSubmit: ', answer);
+  // console.log('answer from inside handleWordSubmit: ', answer);
   const wordIsValid = await API.wordIsValid(wordGuess);
   if (wordIsValid) {
     const scoredLetters = scoreLetters(wordGuess, answer);
     setGuessFunc(guesses => {
+      console.log('adding scored letters to guesses: ', scoredLetters);
       return [...guesses, scoredLetters]
     })
-    console.log('SCORED_LETTERS: ', scoredLetters);
+    // console.log('SCORED_LETTERS: ', scoredLetters);
     if (allLettersAreGreen(scoredLetters)) {
       console.log('YOU WIN!!! CONGRATS!');
       // have actual win function that shows confetti or something

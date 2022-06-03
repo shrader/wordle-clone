@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import * as API from './Api';
 import * as type from './types';
 import * as helpers from './helpers';
+import DisplayAllGuesses from './DisplayAllGuesses';
 // import WordDisplay from './WordDisplay';
 import './App.css';
 
@@ -39,14 +40,6 @@ function GameContainer({answer}:{answer:string}) {
     return
   }
 
-  const mapGuesses = (guessArr:type.WordGuess[]) => {
-    guessArr.map(guess => {
-      return guess.map(props => {
-        return <span style={{backgroundColor:props.color, padding:10}}>{props.letter}</span>
-      })
-    })
-  }
-
   useEffect(() => {
 
     document.addEventListener('keydown', handleKeyEvent);   
@@ -60,8 +53,11 @@ function GameContainer({answer}:{answer:string}) {
 
   return (
     <>
+    <div>
     {testChars}
-
+    </div>
+    <DisplayAllGuesses guesses={guesses}/>
+    Hello
     </>
   );
 }
@@ -87,11 +83,16 @@ function App() {
   } ,[])
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <>
+      <div className="App">
+        <header className="App-header">
+          Wordle Clone
+        </header>
+      </div>
+      <div className="App">
         {isLoading? <p>Loading...</p>:<GameContainer answer={answer}/>}
-      </header>
-    </div>
+      </div>
+    </>
   );
 
 }
