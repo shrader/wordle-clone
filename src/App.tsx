@@ -27,7 +27,7 @@ function App() {
     <>
       <div className="App">
         <header className="App-header">
-          Wordle Clone
+          Wordle Unlimited
         </header>
       </div>
       <div className="App">

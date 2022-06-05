@@ -2,8 +2,15 @@
  All types excpet for prop types will live here
 */
 
+export enum Colors {
+  Yellow = "#b59f3b",
+  Green = "#538d4e",
+  DarkGray = "#3a3a3c",
+  LightGray = "#818384",
+}
+
 export interface LetterGuess {
-  color: "yellow" | "gray" | "green",
+  color: Colors,
   letter: string
 };
 
